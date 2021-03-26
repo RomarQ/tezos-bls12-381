@@ -6,7 +6,7 @@ const G1_SAMPLE =
     '17f1d3a73197d7942695638c4fa9ac0fc3688c4f9774b905a14e3a3f171bac586c55e83ff97a1aeffb3af00adb22c6bb08b3f481e3aaa0f1a09e30ed741d8ae4fcf5e095d5d00af600db18cb2c04b3edd03cc744a2888ae40caa232946c5e7e1';
 const G2_SAMPLE =
     '13e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb80606c4a02ea734cc32acd2b02bc28b99cb3e287e85a763af267492ab572e99ab3f370d275cec1da1aaa9075ff05f79be0ce5d527727d6e118cc9cdc6da2e351aadfd9baa8cbdd3a76d429a695160d12c923ac9cc3baca289e193548608b82801';
-const FR_SAMPLE = 'd30edc8fce6c34442d371da0e24fc3fb83ea957cfea9766c62a531dda98e4b52';
+const FR_SAMPLE = '90988a2421c40eaba101137fecccce44177b040c671fbce4ead7b129a3d1e26f';
 
 describe('BLS12-381', () => {
     describe('G1 Point', () => {
@@ -24,7 +24,7 @@ describe('BLS12-381', () => {
         });
         it('multiply By Fr', () => {
             const output =
-                '03f9c71a9cc3375dfbbae74c877690c37f634c7724c7cac820c8d10849db2034ecae27c9bbce98b28fc3f22522ff6ce9022f7cd70a8e74f3170c0020d9af54521eb5584a73aa7df5fd1117f4b7b25e4b75552a1e3cb79aca363af514af9719b6';
+                '045c0433bce14e71697f81ba2a4de7898d26677a7c4c587a96691e83d48dfba8b0790f9cf445bed09c8b34e13a361d4e06f39e53398b49c0c73af2a59054994999e70ba792990943af63a4a2c5db374c447130d18594c8ae4d7d6e553bb02b70';
 
             expect(Bls12.multiplyG1ByFr(G1_SAMPLE, FR_SAMPLE)).toBe(output);
         });
@@ -44,44 +44,67 @@ describe('BLS12-381', () => {
         });
         it('multiply By Fr', () => {
             const output =
-                '013b35a6a9af19a16dd4966deb50ec44f187ec86defab81ab4f6a9e57ac31fd060a61f0f1064cab2bb4ef5d18ae23a33094ef465be7de7d9061447101707e58bf0de9b478fe38fc0f773227300b684ddb079a0b2d441878ec90ac26b4c1f17ad080bdfcc191fbfcc419ea5c98cabc66719e26540ee1a4be84e29ad0807656fb91dec12be1e9e768c383af935bc0cba53077763962e045c7e9bf37ecfbba52eeb496babbbfe4c5ed244e9b1d2e0b613b7259abe120722798c3e3c6acbb248c105';
+                '032371743c9e2b09f45ea03f339af18fb7bd731a65ab720b05f293c2995385a068009fcfc859a1f73301d7430855a3d40ec83a929015835d91eb386034ab7c929d9f995225983e1be1138ab4e161c865b50e86c6a1b63ba02f9c3de1ee19686714540c10f5c01175a16404c5509dd499b8fce73b22ea53032469e964a0750a59342d77e96f046cb1476a1f9de35f3dc2072dac804404ea8d6636b55a9b8ef3f53c0e0902a80a58ea9037731c3117eb0ad8fd31372c7e19fb22ba7ef598d06fae';
 
-            expect(Bls12.multiplyG2ByFr(G2_SAMPLE, FR_SAMPLE)).toBe(output);
+            expect(
+                Bls12.multiplyG2ByFr(
+                    '08f035b8a5be927d572523547626a4fab8e7eb70835e76ef384bebd24c00ff6a85b0276c9dc57c6193a2b7cb3c498aa10193b7a7c3acdd3de0d15da408ba6cd8f6076dfb7e65be8afa9844384230152062ad3a3a17c3cb3d4b9c059920821aba0d878c1f1e14dc4a7f1b4a35660b1a12348da93db333bb9fec00985d863e3c2c05af9b28e308a40bf8936af3ac50da0906e8fa7ee56e0e8d279e3897c19627ab5d2c72a1ae0bad6db53fa414d647077c206b751e70a14e45ce2baad8f0cc9a55',
+                    '90988a2421c40eaba101137fecccce44177b040c671fbce4ead7b129a3d1e26f',
+                ),
+            ).toBe(output);
         });
     });
     describe('Prime Field (Fr)', () => {
         it('add', () => {
-            const output = '4a54c3261ffff0afc0c0b329a7b9ffe70c9c3ef0fd57d8dbc54a63be531c96a1';
+            const output = '1f31154943881d5644a727fed5f5df35291e670ec6663e968d32c629f3fbd76b';
 
             expect(Bls12.addFr(FR_SAMPLE, FR_SAMPLE)).toBe(output);
         });
         it('negate', () => {
-            const output = '14cc721684cec64c393c926f30f3ec0f2390b289015341919d5ace205671b4b0';
+            const output = '716775dbdd3bf1545d5aeb8016d7ee0eee5c9dfda0b87d4e5da5ebffafd50a04';
 
             expect(Bls12.negateFr(FR_SAMPLE)).toBe(output);
         });
         it('multiply By Fr', () => {
-            const output = '17fe4bada86b9b7eae265c0bb6361ec23b3fe1319b74eed9b020ffbf9916339c';
+            const output = '6d3b7aed2bd527aadec83793137e066f3e7784a60aa1d190f49870b35b834f21';
 
             expect(Bls12.multiplyFrByFr(FR_SAMPLE, FR_SAMPLE)).toBe(output);
         });
         it('multiply By Int', () => {
-            const int = 2;
-            const output = '4a54c3261ffff0afc0c0b329a7b9ffe70c9c3ef0fd57d8dbc54a63be531c96a1';
+            const int = 18000000;
+            const output = '0040e820ad260100000000000000000000000000000000000000000000000000';
 
-            expect(Bls12.multiplyFrByInt(FR_SAMPLE, int)).toBe(output);
+            expect(Bls12.multiplyFrByInt('80a8120100000000000000000000000000000000000000000000000000000000', int)).toBe(
+                output,
+            );
         });
         it('convertFrToInt', () => {
-            const output = '43028393996057426870012898065490292689597965734854359027939594241474458176337';
+            const output = '50607480493231234442512859501114091061098710212140837128944409744146262825104';
             expect(Bls12.convertFrToInt(FR_SAMPLE)).toBe(output);
         });
     });
-    describe('Pairing Check', () => {
-        it('True', () => {
+    describe('Pairing Check 1', () => {
+        it('True 1', () => {
             const pair1G1 = PointG1.BASE.toHex();
             const pair1G2 = PointG2.BASE.toHex();
             const pair2G1 = PointG1.BASE.negate().toHex();
             const pair2G2 = PointG2.BASE.toHex();
+            expect(
+                Bls12.pairingCheck([
+                    [pair1G1, pair1G2],
+                    [pair2G1, pair2G2],
+                ]),
+            ).toBe(true);
+        });
+        it('True 2', () => {
+            const pair1G1 =
+                '0a6c72a6cbe82240fb3e26892bb8baea20951af3843f13620a401239436fa6bc77106faa0d89228ccce1514962008eda14ff80b3b23e3de09b478281cfcb32a5064633830a32da6dd9e1f8da0c4a540eb873d396197e5264c4918022c61d9841';
+            const pair1G2 =
+                '055f747e60b6324409095ea64a0b4141e0b090f843d31eeea127ad0c51e25594b3c20b58714b6a6cf08fa396736ef86c0e2e0c5fd057c48ca36e5a8c2cedd779f59722a2893a1be8eed23fbce35a0e9a95f72e4d31542e083b145b3f328062be1812877bcb4b646c0e5af84b246f7fc4c1757d8eb5ef520c2df43f0e874c99bb774330f02f03c8f46648c6ef0df58a6c038f87eadada70950fcdf705ad364b0f8437f4702d3fc41d88df7f3ac82eb1896c93708fe8d92deabfa70e5efa9d245b';
+            const pair2G1 =
+                '19bc007de29752594f8c006b21fc1a4806fd2a1aa48db7f2d0c0dc694bea195f52c0c0159df4776fd89afbc1d7c2e0bf0b229543fba3cbcb2d4cf1559ee2f6327e2fecdf9fc7d52bb7a13b3699844f88f7f5dc1d1077b2d7fd9a1fc13e381159';
+            const pair2G2 =
+                '0a6cca158299d9f2110d74aeaf0659713ff93851970e49919904abb1845a2a1e121dd1dea360f3556bdfe8f455c4dd07048c12b7a689a096b86e6c8d5b3c9be2d17d09531124d19538621c9bed7445552f14938dfdcceb52e079e0ceccf579e11950529261c8a81ab0bb1dd34b6d41c71fca862871301fb36fef57048055a8744971555c8ee64381ba83cb190e322c6311e7984651b1044ba35c97a00628327ad9f278cb4e9731d90c0c8e31b9d470138c15f2893a84040dcf4a792853f93064';
             expect(
                 Bls12.pairingCheck([
                     [pair1G1, pair1G2],

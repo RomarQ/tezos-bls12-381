@@ -1,13 +1,13 @@
 import { PointG1, PointG2, pairing, Fq12 } from 'noble-bls12-381';
 
-import { bigIntOfHex, frOfHex } from './utils';
+import { frOfHex, bigEndianToLittleEndian, bigIntOfHex } from './utils';
 
 // G1
 
 const addG1 = (byteString1: string, byteString2: string): string => {
     const point1 = PointG1.fromHex(byteString1);
-    const point2 = PointG1.fromHex(byteString2);
     point1.assertValidity();
+    const point2 = PointG1.fromHex(byteString2);
     point2.assertValidity();
     return point1.add(point2).toHex();
 };
@@ -21,25 +21,29 @@ const negateG1 = (byteString: string): string => {
 const multiplyG1ByFr = (byteString1: string, byteString2: string): string => {
     const g1 = PointG1.fromHex(byteString1);
     g1.assertValidity();
-    return g1.multiply(bigIntOfHex(byteString2)).toHex();
+    return g1.multiply(bigIntOfHex(bigEndianToLittleEndian(byteString2))).toHex();
 };
 
 // G2
 
 const addG2 = (byteString1: string, byteString2: string): string => {
     const point1 = PointG2.fromHex(byteString1);
+    point1.assertValidity();
     const point2 = PointG2.fromHex(byteString2);
+    point2.assertValidity();
     return point1.add(point2).toHex();
 };
 
 const negateG2 = (byteString: string): string => {
     const g2 = PointG2.fromHex(byteString).negate();
+    g2.assertValidity();
     return g2.toHex();
 };
 
 const multiplyG2ByFr = (byteString1: string, byteString2: string): string => {
     const g2 = PointG2.fromHex(byteString1);
-    return g2.multiply(bigIntOfHex(byteString2)).toHex();
+    g2.assertValidity();
+    return g2.multiply(bigIntOfHex(bigEndianToLittleEndian(byteString2))).toHex();
 };
 
 // Fr
@@ -47,27 +51,26 @@ const multiplyG2ByFr = (byteString1: string, byteString2: string): string => {
 const addFr = (byteString1: string, byteString2: string): string => {
     const frOne = frOfHex(byteString1);
     const frTwo = frOfHex(byteString2);
-    return frOne.add(frTwo).value.toString(16);
+    return bigEndianToLittleEndian(frOne.add(frTwo).toString());
 };
 
 const negateFr = (byteString: string): string => {
     const fr = frOfHex(byteString);
-    return fr.negate().value.toString(16);
+    return bigEndianToLittleEndian(fr.negate().toString());
 };
 
 const multiplyFrByFr = (byteString1: string, byteString2: string): string => {
     const frOne = frOfHex(byteString1);
-    return frOne.multiply(bigIntOfHex(byteString2)).value.toString(16);
+    const frTwo = frOfHex(byteString2);
+    return bigEndianToLittleEndian(frOne.multiply(frTwo).toString());
 };
 
-const multiplyFrByInt = (byteString: string, int: number): string => {
-    const frOne = frOfHex(byteString);
-    return frOne.multiply(BigInt(int)).value.toString(16);
+const multiplyFrByInt = (byteString: string, int: string | number): string => {
+    return bigEndianToLittleEndian(frOfHex(byteString).multiply(BigInt(int)).toString());
 };
 
 const convertFrToInt = (byteString: string): string => {
-    const fr = frOfHex(byteString);
-    return fr.value.toString(10);
+    return bigIntOfHex(bigEndianToLittleEndian(byteString)).toString(10);
 };
 
 /**
