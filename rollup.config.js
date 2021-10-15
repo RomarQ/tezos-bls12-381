@@ -26,7 +26,6 @@ export default {
             format: 'iife',
             exports: 'default',
             compact: true,
-            globals: { crypto: 'crypto' },
             banner: `/* === Version: ${pkg.version} === */`,
         },
     ],

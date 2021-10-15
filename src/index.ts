@@ -1,4 +1,4 @@
-import { PointG1, PointG2, pairing, Fq12 } from 'noble-bls12-381';
+import { PointG1, PointG2, pairing, Fp12 } from 'noble-bls12-381';
 
 import { frOfHex, bigEndianToLittleEndian, bigIntOfHex } from './utils';
 
@@ -92,7 +92,7 @@ const pairingCheck = (list: string[][]): boolean => {
         pair2G2.assertValidity();
         const pair1 = pairing(pair1G1, pair1G2);
         const pair2 = pairing(pair2G1, pair2G2);
-        valid = pair1.multiply(pair2).equals(Fq12.ONE);
+        valid = pair1.multiply(pair2).equals(Fp12.ONE);
     }
 
     return valid;
