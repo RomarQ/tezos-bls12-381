@@ -1,4 +1,4 @@
-import { PointG1, PointG2, pairing, Fp12 } from 'noble-bls12-381';
+import { PointG1, PointG2, pairing, Fp12 } from '@noble/bls12-381';
 
 import { frOfHex, bigEndianToLittleEndian, bigIntOfHex } from './utils';
 

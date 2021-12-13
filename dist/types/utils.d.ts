@@ -1,4 +1,4 @@
-import { Fr } from 'noble-bls12-381';
+import { Fr } from '@noble/bls12-381';
 /**
  * @description Convert hexadecimal to a Prime Field.
  *

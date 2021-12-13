@@ -7,14 +7,14 @@ Special thanks to Paul Miller, for his fantastic library [noble-bls12-381](https
 ## Install
 
 ```bash
-npm install tezos-bls12-381
+npm install @tezwell/tezos-bls12-381
 # or
-yarn add tezos-bls12-381
+yarn add @tezwell/tezos-bls12-381
 ```
 
 ## Usage
 ```ts
-import Bls12 from 'tezos-bls12-381';
+import Bls12 from '@tezwell/tezos-bls12-381';
 
 const point_1 = "0572cbea904d67468808c8eb50a9450c9721db309128012543902d0ac358a62ae28f75bb8f1c7c42c39a8c5529bf0f4e166a9d8cabc673a322fda673779d8e3822ba3ecb8670e461f73bb9021d5fd76a4c56d9d4cd16bd1bba86881979749d28";
 
@@ -25,7 +25,7 @@ const newPoint = Bls12.addG1(point_1, point_2);
 console.log("New Point: \n", newPoint);
 
 >>>
-New Point: 
+New Point:
 0572cbea904d67468808c8eb50a9450c9721db309128012543902d0ac358a62ae28f75bb8f1c7c42c39a8c5529bf0f4e166a9d8cabc673a322fda673779d8e3822ba3ecb8670e461f73bb9021d5fd76a4c56d9d4cd16bd1bba86881979749d28
 ```
 
@@ -49,5 +49,3 @@ Check the [tests](src/__tests__/index.test.ts) for more examples.
 ## References
 
 [SmartPy BLS12-381 Contract Template](https://smartpy.io/ide?template=bls12_381.py)
-
-<img height="48" href="https://smartpy.io" src="https://smartpy.io/static/img/logo.png">
