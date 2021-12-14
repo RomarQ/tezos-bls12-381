@@ -19,7 +19,7 @@ function generateBundle() {
             sourcemap: true,
             outdir: DIST_FOLDER,
             platform: 'browser',
-            format: 'esm',
+            format: 'cjs',
         })
         .then((result) => {
             console.log();
